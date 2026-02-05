@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI-Powered Daily Log &amp; Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bcdee",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4f54;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="border-b border-solid border-slate-200 dark:border-[#283639] bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-2xl font-bold">water_drop</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Aura Health</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary py-5" href="#">Daily Log</a>
+<a class="text-slate-500 dark:text-[#9db4b9] text-sm font-medium hover:text-primary transition-colors" href="#">Insights</a>
+<a class="text-slate-500 dark:text-[#9db4b9] text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
+<a class="text-slate-500 dark:text-[#9db4b9] text-sm font-medium hover:text-primary transition-colors" href="#">Protocols</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<label class="hidden lg:flex items-center bg-slate-100 dark:bg-[#283639] rounded-lg px-3 py-1.5 w-64">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#9db4b9] text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-400 dark:placeholder:text-[#9db4b9]" placeholder="Search logs or data..." type="text"/>
+</label>
+<button class="p-2 text-slate-500 dark:text-white hover:bg-slate-100 dark:hover:bg-[#283639] rounded-lg transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-[#283639]"></div>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-primary/50" data-alt="User profile portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPaSWAwc0yQFxmDiZ-HqRGNh0c-jVo5Ci3Oeqp0TSG5dItEOtLIXppInRfDS2t6xV515mwWymhDehdMp_-7UadfhuT5Xvm5Tqhu4g7EajSGgG07FVFCpmrm_0dZACnNppPiHelNtwSfZAVBCM6jp-Hpg8wI1dPNtbVZGECeqE_oLSdfVZxTCf94WF_-YVc8-x8Vc4m24P9_wwcBoSYfDnfM1Asx5F3RkP0dPqXPeHGWVE74vIHX0pJ-kwUPaCDsipkbhEropI_1zo");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 py-8">
+<!-- Breadcrumbs & Heading -->
+<div class="mb-8">
+<div class="flex items-center gap-2 text-sm mb-4">
+<a class="text-slate-500 dark:text-[#9db4b9] hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">Daily AI Log</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-black tracking-tight mb-2">Daily Log &amp; AI Analysis</h1>
+<p class="text-slate-500 dark:text-[#9db4b9] text-lg">Type your day naturally. Our AI will handle the tracking for you.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#283639] rounded-lg font-bold text-sm transition-colors hover:bg-slate-200 dark:hover:bg-[#34474b]">
+<span class="material-symbols-outlined text-lg">history</span>
+                        View History
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-background-dark rounded-lg font-bold text-sm transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">save</span>
+                        Complete Entry
+                    </button>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Panel: Composer -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1c2527] rounded-xl border border-slate-200 dark:border-[#3b4f54] overflow-hidden flex flex-col h-[600px] shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-[#3b4f54] flex justify-between items-center bg-slate-50/50 dark:bg-transparent">
+<h3 class="text-xl font-bold">How was your day?</h3>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] uppercase font-black tracking-widest rounded-md flex items-center gap-1">
+<span class="size-1.5 bg-primary rounded-full animate-pulse"></span>
+                                AI Live Syncing
+                            </span>
+</div>
+</div>
+<div class="flex-1 relative group">
+<textarea class="w-full h-full p-8 bg-transparent border-none focus:ring-0 text-lg leading-relaxed resize-none placeholder:text-slate-400 dark:placeholder:text-[#557277] custom-scrollbar" placeholder="I woke up at 7 AM, had a glass of lemon water, then a bowl of oatmeal with flax seeds for breakfast. I took my Myo-inositol supplement. Feeling energetic today, but noticed a slight headache after lunch...">I woke up at 7:30 AM and started my morning with a large glass of warm lemon water. For breakfast, I had a bowl of steel-cut oatmeal topped with a tablespoon of flax seeds, some blueberries, and a drizzle of almond butter. 
+
+I took my Myo-inositol and Vitex supplements right after eating. 
+
+Around 10:30 AM, I did a 20-minute gentle yoga flow focusing on pelvic circulation. Felt quite flexible today!
+
+For lunch, I had a Mediterranean salad with grilled salmon, chickpeas, spinach, and olive oil dressing. I'm trying to keep my protein high for my PCOS management.</textarea>
+<div class="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-white/80 dark:bg-[#1c2527]/80 backdrop-blur-sm p-3 rounded-xl border border-slate-200 dark:border-[#3b4f54] opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 dark:text-[#9db4b9] hover:bg-slate-100 dark:hover:bg-[#283639] rounded-lg">
+<span class="material-symbols-outlined">image</span>
+</button>
+<button class="p-2 text-slate-400 dark:text-[#9db4b9] hover:bg-slate-100 dark:hover:bg-[#283639] rounded-lg">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2 text-slate-400 dark:text-[#9db4b9] hover:bg-slate-100 dark:hover:bg-[#283639] rounded-lg">
+<span class="material-symbols-outlined">add_reaction</span>
+</button>
+</div>
+<div class="text-xs text-slate-400 dark:text-[#557277] font-medium uppercase tracking-tighter">
+                                420 Words • Last saved 1m ago
+                            </div>
+</div>
+</div>
+</div>
+<!-- Symptom Quick-Log (Extra Component) -->
+<div class="flex flex-wrap gap-3">
+<span class="text-sm font-semibold text-slate-500 dark:text-[#9db4b9] py-2">Quick Tags:</span>
+<button class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-[#283639] text-sm font-medium hover:bg-primary/20 hover:text-primary transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-base">sentiment_satisfied</span> No Pain
+                    </button>
+<button class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-[#283639] text-sm font-medium hover:bg-primary/20 hover:text-primary transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-base">waves</span> Bloated
+                    </button>
+<button class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-[#283639] text-sm font-medium hover:bg-primary/20 hover:text-primary transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-base">bolt</span> High Energy
+                    </button>
+<button class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-[#283639] text-sm font-medium hover:bg-primary/20 hover:text-primary transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-base">dark_mode</span> Poor Sleep
+                    </button>
+</div>
+</div>
+<!-- Right Panel: AI Analysis -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- What AI Sees -->
+<div class="bg-white dark:bg-[#1c2527] rounded-xl border border-slate-200 dark:border-[#3b4f54] p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<div class="size-2 bg-primary rounded-full"></div>
+<h4 class="text-sm uppercase font-black tracking-widest text-slate-500 dark:text-[#9db4b9]">What AI Sees</h4>
+</div>
+<div class="space-y-6">
+<!-- Category: Nutrition -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">restaurant</span>
+                                    Nutrition
+                                </span>
+<span class="text-[10px] text-slate-400 dark:text-[#557277] font-bold">4 DETECTED</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium flex items-center gap-2">
+                                    Steel-cut Oatmeal <span class="text-[10px] text-primary bg-primary/10 px-1 rounded font-bold">CARB</span>
+</span>
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium flex items-center gap-2">
+                                    Salmon <span class="text-[10px] text-green-400 bg-green-400/10 px-1 rounded font-bold">PROTEIN</span>
+</span>
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium flex items-center gap-2">
+                                    Flax Seeds <span class="text-[10px] text-amber-400 bg-amber-400/10 px-1 rounded font-bold">FIBER</span>
+</span>
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium flex items-center gap-2">
+                                    Chickpeas <span class="text-[10px] text-green-400 bg-green-400/10 px-1 rounded font-bold">PROTEIN</span>
+</span>
+</div>
+</div>
+<!-- Category: Activity -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">fitness_center</span>
+                                    Activity
+                                </span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium flex items-center gap-2">
+                                    Gentle Yoga <span class="text-[10px] text-primary font-bold">20 MIN</span>
+</span>
+</div>
+</div>
+<!-- Category: Meds/Supps -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">pill</span>
+                                    Supplements
+                                </span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium">Myo-inositol</span>
+<span class="px-3 py-1.5 bg-slate-100 dark:bg-[#283639] border border-slate-200 dark:border-[#3b4f54] rounded-lg text-xs font-medium">Vitex</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Supportive Feedback -->
+<div class="bg-primary/5 dark:bg-[#1c2527] rounded-xl border border-primary/20 dark:border-[#3b4f54] p-6 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[60px] rounded-full"></div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h4 class="text-sm uppercase font-black tracking-widest text-slate-500 dark:text-[#9db4b9]">Supportive Feedback</h4>
+</div>
+<div class="space-y-4">
+<div class="flex gap-4 items-start bg-white dark:bg-[#283639]/50 p-3 rounded-lg border border-slate-100 dark:border-[#3b4f54]">
+<span class="material-symbols-outlined text-green-500 mt-1">check_circle</span>
+<div>
+<p class="text-sm font-bold">Great Fiber Intake</p>
+<p class="text-xs text-slate-500 dark:text-[#9db4b9] mt-1 leading-relaxed">The flax seeds in your oatmeal are excellent for hormone regulation and estrogen metabolism.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start bg-white dark:bg-[#283639]/50 p-3 rounded-lg border border-slate-100 dark:border-[#3b4f54]">
+<span class="material-symbols-outlined text-amber-500 mt-1">lightbulb</span>
+<div>
+<p class="text-sm font-bold">Glucose Strategy</p>
+<p class="text-xs text-slate-500 dark:text-[#9db4b9] mt-1 leading-relaxed">Consider adding a scoop of protein powder to your oatmeal next time to further blunt any glucose spike from the oats.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start bg-white dark:bg-[#283639]/50 p-3 rounded-lg border border-slate-100 dark:border-[#3b4f54]">
+<span class="material-symbols-outlined text-primary mt-1">favorite</span>
+<div>
+<p class="text-sm font-bold">Cycle Awareness</p>
+<p class="text-xs text-slate-500 dark:text-[#9db4b9] mt-1 leading-relaxed">You're in your follicular phase. This high-protein Mediterranean lunch is perfect for supporting follicle development.</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-dashed border-primary/30 dark:border-[#3b4f54] rounded-lg text-primary text-xs font-bold hover:bg-primary/10 transition-colors uppercase tracking-widest">
+                        Customize Analysis Goals
+                    </button>
+</div>
+</div>
+</div>
+<!-- Sticky Mobile Actions -->
+<div class="fixed bottom-4 right-4 lg:hidden">
+  <button class="bg-primary text-background-dark w-14 h-14 rounded-xl shadow-2xl flex items-center justify-center">
+    <span class="material-symbols-outlined">save</span>
+  </button>
+</div>
+
+</main>
+<!-- Background Decoration Elements -->
+<div class="fixed top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary/5 dark:bg-primary/2 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-5%] w-[30%] h-[30%] bg-primary/5 dark:bg-primary/2 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+<div id = "footer-placeholder">
+  <script>
+    fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+  </script>
+</body></html>
